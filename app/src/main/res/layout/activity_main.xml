@@ -51,6 +51,18 @@
             android:textColor="@color/colorWhite"
             android:text="@string/submit_button_find_fuel"/>
 
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/submit_button_car"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/colorAccent"
+            app:rippleColor="@color/colorAccentDark"
+            app:strokeColor="@color/colorAccent"
+            app:strokeWidth="2dp"
+            android:textColor="@color/colorWhite"
+            android:text="Get car"/>
+
     <TextView
             android:id="@+id/testView"
             android:layout_width="match_parent"
