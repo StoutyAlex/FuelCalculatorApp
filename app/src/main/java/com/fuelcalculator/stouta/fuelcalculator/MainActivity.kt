@@ -1,8 +1,14 @@
 package com.fuelcalculator.stouta.fuelcalculator
 
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
@@ -10,40 +16,77 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
-
+import com.google.android.material.tabs.TabLayout
+import androidx.viewpager.widget.ViewPager
+import kotlinx.android.synthetic.main.fragment_main.view.*
 
 class MainActivity : AppCompatActivity() {
+
+    private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var jsonString = """{ "success": true, "data": {
-                                    "duration": "126.85",
-                                    "distance": "121.13",
-                                    "fuelTankCapacity": 45,
-                                    "tanksUsed": "0.22",
-                                    "litresUsed": "9.9",
-                                    "start": "Salford M50 1AZ, UK",
-                                    "end": "Church St, Orston, Nottingham NG13 9NW, UK",
-                                    "averageSpeed": "57.30",
-                                    "journeyCost": "12.85",
-                                    "mpg": 55.4 }}"""
+        mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
 
-//        val gson = Gson()
-//        val clientResponseModel = gson.fromJson(jsonString, FuelCostModel::class.java)
-//
-//        Log.i("AABBCC", "here it is")
-//        Log.i("sccess",clientResponseModel.getSuccess());
-//        Log.i("distance",""+clientResponseModel.getClientData().distance);
+        container.adapter = mSectionsPagerAdapter
 
-        submit_button.setOnClickListener {this.getCarData()}
-        submit_button_car.setOnClickListener {this.getCarData()}
+        container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
+        tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
+
+//        tabs.setupWithViewPager(container)
+    }
+
+    inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+
+        override fun getItem(position: Int): Fragment {
+            // getItem is called to instantiate the fragment for the given page.
+            // Return a PlaceholderFragment (defined as a static inner class below).
+            return PlaceholderFragment.newInstance(position + 1)
+        }
+
+        override fun getCount(): Int {
+            // Show 3 total pages.
+            return 3
+        }
+    }
+
+    class PlaceholderFragment : Fragment() {
+
+        override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            val rootView = inflater.inflate(R.layout.fragment_main, container, false)
+            rootView.section_label.text = getString(R.string.section_format, arguments?.getInt(ARG_SECTION_NUMBER))
+            return rootView
+        }
+
+        companion object {
+            /**
+             * The fragment argument representing the section number for this
+             * fragment.
+             */
+            private val ARG_SECTION_NUMBER = "section_number"
+
+            /**
+             * Returns a new instance of this fragment for the given section
+             * number.
+             */
+            fun newInstance(sectionNumber: Int): PlaceholderFragment {
+                val fragment = PlaceholderFragment()
+                val args = Bundle()
+                args.putInt(ARG_SECTION_NUMBER, sectionNumber)
+                fragment.arguments = args
+                return fragment
+            }
+        }
     }
 
     fun getCarData() {
         val url = "https://v8wc4obvre.execute-api.eu-west-1.amazonaws.com/default/fuel-calculator/car"
-        testView.text = ""
+//        testView.text = ""
 
         // Post parameters
         // Form fields and values
@@ -60,14 +103,14 @@ class MainActivity : AppCompatActivity() {
                 val clientResponseModel = gson.fromJson(response.toString(), CarModel::class.java)
 
                 try {
-                    testView.text = "Response: ${clientResponseModel.clientData.combined} ${response.toString()}"
+//                    testView.text = "Response: ${clientResponseModel.clientData.combined} ${response.toString()}"
                 } catch (e: Exception) {
-                    testView.text = "Exception: $e"
+//                    testView.text = "Exception: $e"
                 }
 
             }, Response.ErrorListener {
                 // Error in request
-                testView.text = "Volley error: $it"
+//                testView.text = "Volley error: $it"
             })
 
 
