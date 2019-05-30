@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">FuelCalculator</string>
+
     <string name="input_label_origin">Origin</string>
     <string name="input_label_destination">Destination</string>
+    <string name="input_label_registration">Registration</string>
+
     <string name="submit_button_find_fuel">Calculate costs...</string>
     <string name="car_tab_label">CARS</string>
     <string name="fuel_tab_label">FUEL CALCULATOR</string>

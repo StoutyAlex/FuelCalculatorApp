@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <EditText
+            android:layout_margin="15dp"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:backgroundTint="@color/colorRegistration"
+            android:background="@color/colorRegistration"
+            android:textSize="55sp"
+            android:gravity="start"
+            android:textAlignment="center"
+            android:fontFamily="@font/number_plate"
+            android:id="@+id/text_car_registration"
+            android:hint="@string/input_label_registration"
+    />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/car_test_text"
+            android:text="before"/>
+
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dialog_confirm_button"
+            android:text="Find car"/>
+
+</LinearLayout>

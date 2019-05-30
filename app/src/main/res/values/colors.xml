@@ -5,4 +5,6 @@
     <color name="colorAccent">#275ae9</color>
     <color name="colorAccentDark">#1d45b7</color>
     <color name="colorWhite">#ffffff</color>
+
+    <color name="colorRegistration">#e6d211</color>
 </resources>
