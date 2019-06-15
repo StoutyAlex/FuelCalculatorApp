@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         // Post parameters
         // Form fields and values
         val params = HashMap<String, String>()
-        params["registration"] = "SA17VLR"
+        params["registration"] = "v"
         val jsonObject = JSONObject(params)
 
         // Volley post request with parameters

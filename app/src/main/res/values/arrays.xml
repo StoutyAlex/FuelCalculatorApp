@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <array name="auto_registration_size">
+        <item>55sp</item>
+        <item>100sp</item>
+        <item>200sp</item>
+        <item>300sp</item>
+    </array>
 </resources>
